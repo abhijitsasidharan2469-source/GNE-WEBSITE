@@ -64,13 +64,8 @@ export default function ContactPage() {
                   {site.contact.phone}
                 </a>
               </div>
-              <div>
-                <div className="font-semibold text-slate-900 dark:text-white">Chatbot</div>
-                <div className="mt-1">
-                  Add WhatsApp / website chatbot here for fast lead capture.
-                </div>
-              </div>
             </div>
+
           </Card>
         </div>
       </Section>

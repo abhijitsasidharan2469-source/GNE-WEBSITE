@@ -6,22 +6,20 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 
 const primaryNav = [
   { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
   { href: "/projects", label: "Projects" }
 ];
 
 const dropdownNav = [
   {
-    label: "Solutions",
+    label: "Services",
     items: [
-      { href: "/solar-epc", label: "Solar EPC" },
-      { href: "/bess-ems", label: "BESS & EMS" },
-      { href: "/hydrogen", label: "Hydrogen" },
-      { href: "/solar-panel-plant", label: "Solar Panel Plant" }
+      { href: "/", label: "SOLAR (EPC/IPP, I&C)" },
+      { href: "/projects/p3", label: "BESS (EPC / I&C)" },
+      { href: "/pmc", label: "Project Management Consultancy (PMC)" },
+      { href: "/o-and-m", label: "O&M" },
+      { href: "/green-hydrogen", label: "Green Hydrogen" }
     ]
-  },
-  {
-    label: "Resources",
-    items: [{ href: "/blog", label: "Blog" }]
   }
 ];
 
@@ -37,9 +35,9 @@ export function Header() {
           <Image
             src="/gne-logo.png"
             alt="GNE Infra logo"
-            width={238}
-            height={68}
-            className="h-14 w-auto object-contain"
+            width={315}
+            height={190}
+            className="h-20 sm:h-24 w-auto object-contain"
             priority
           />
         </a>
@@ -48,7 +46,7 @@ export function Header() {
           <MobileNav primaryNav={primaryNav} dropdownNav={dropdownNav} />
 
           <nav
-            className="hidden flex-nowrap items-center justify-center gap-3 text-[16px] font-bold tracking-wide text-slate-900 dark:text-slate-100 lg:flex"
+            className="hidden flex-nowrap items-center justify-center gap-3 text-[17px] font-bold tracking-wide text-slate-900 dark:text-slate-100 lg:flex"
             aria-label="Main"
           >
             {primaryNav.map((item) => (
@@ -81,8 +79,8 @@ export function Header() {
               </div>
             ))}
 
-            <Link href="/contact" className={`${navPill} shrink-0`}>
-              Contact
+            <Link href="/blog" className={navPill}>
+              Blogs
             </Link>
           </nav>
         </div>
@@ -90,7 +88,7 @@ export function Header() {
         <div className="flex items-center justify-end gap-3">
           <Link
             href="/contact"
-            className="hidden rounded-xl bg-brand-green px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700 sm:inline-flex"
+            className="hidden rounded-xl bg-brand-green px-5 py-3 text-[15px] font-semibold text-white transition hover:bg-emerald-700 sm:inline-flex"
           >
             Get a Quote
           </Link>

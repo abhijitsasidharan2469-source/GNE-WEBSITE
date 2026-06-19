@@ -23,11 +23,11 @@ export function ThemeToggle() {
   return (
     <button
       type="button"
-      className="theme-toggle inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white/70 px-3 py-2 text-sm font-medium text-slate-700 shadow-sm backdrop-blur transition hover:bg-white dark:border-slate-800 dark:bg-slate-950/60 dark:text-slate-200 dark:hover:bg-slate-950"
+      className="theme-toggle inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white/70 px-4 py-2.5 text-sm font-semibold text-slate-700 shadow-sm backdrop-blur transition hover:bg-white dark:border-slate-800 dark:bg-slate-950/60 dark:text-slate-200 dark:hover:bg-slate-950"
       onClick={handleToggleTheme}
       aria-label="Toggle theme"
     >
-      <span className="relative inline-flex min-h-5 items-center justify-center">
+      <span className="relative inline-flex min-h-6 items-center justify-center">
         <span className="invisible select-none" aria-hidden>
           Light
         </span>

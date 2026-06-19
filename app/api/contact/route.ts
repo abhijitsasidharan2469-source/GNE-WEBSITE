@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import nodemailer from "nodemailer";
 
 const ContactSchema = z.object({
   name: z.string().min(2),
@@ -10,29 +11,54 @@ const ContactSchema = z.object({
 });
 
 export async function POST(req: Request) {
-  let json: unknown;
   try {
-    json = await req.json();
-  } catch {
-    return NextResponse.json({ error: "Expected a JSON body." }, { status: 400 });
-  }
+    const json = await req.json();
 
-  try {
     const parsed = ContactSchema.safeParse(json);
+
     if (!parsed.success) {
-      return NextResponse.json({ error: "Invalid form data." }, { status: 400 });
+      return NextResponse.json(
+        { error: "Invalid form data." },
+        { status: 400 }
+      );
     }
 
-    // Replace with email sending (Resend/SendGrid), CRM push (HubSpot), or database storage.
-    // For now we log safely server-side.
-    console.log("Contact form submission:", {
-      ...parsed.data,
-      messageLength: parsed.data.message.length
+    const { name, email, phone, company, message } = parsed.data;
+
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_APP_PASSWORD,
+      },
+    });
+
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: "info@gneinfra.com",
+      replyTo: email,
+      subject: `New Website Inquiry - ${name}`,
+      html: `
+        <h2>New Inquiry Received</h2>
+
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Phone:</strong> ${phone || "N/A"}</p>
+        <p><strong>Company:</strong> ${company || "N/A"}</p>
+
+        <p><strong>Message:</strong></p>
+        <p>${message}</p>
+      `,
     });
 
     return NextResponse.json({ ok: true });
-  } catch {
-    return NextResponse.json({ error: "Unexpected error." }, { status: 500 });
+
+  } catch (error) {
+    console.error(error);
+
+    return NextResponse.json(
+      { error: "Failed to send message." },
+      { status: 500 }
+    );
   }
 }
-

@@ -39,16 +39,6 @@ export function Footer() {
                 BESS & EMS
               </Link>
             </li>
-            <li>
-              <Link className="hover:underline" href="/hydrogen">
-                Hydrogen
-              </Link>
-            </li>
-            <li>
-              <Link className="hover:underline" href="/solar-panel-plant">
-                Solar Panel Plant
-              </Link>
-            </li>
           </ul>
         </div>
 

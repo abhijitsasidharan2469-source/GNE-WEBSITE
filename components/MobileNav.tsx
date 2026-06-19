@@ -96,6 +96,9 @@ export function MobileNav({
                   ))}
                 </div>
               ))}
+              <Link key="/blog" href="/blog" className={mobileLink} onClick={close}>
+                Blogs
+              </Link>
               <div className="mt-2 border-t border-emerald-100 pt-2 dark:border-emerald-900/50">
                 <Link
                   href="/contact"

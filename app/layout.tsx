@@ -3,6 +3,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import LoadingOverlay from "@/components/LoadingOverlay";
 import { site } from "@/content/site";
 
 function metadataBaseUrl(): URL {
@@ -47,6 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning>
       <body>
         <ThemeProvider>
+          <LoadingOverlay />
           <Header />
           <main className="min-h-[70vh]">{children}</main>
           <Footer />
